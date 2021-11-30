@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'/>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'/>
+    <title>Goxx Capital Trading Bot</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'/>
+    <link rel='stylesheet' type='text/css' media='screen' href='./awesome/css/fontawesome.min.css'/>
+    <link rel='stylesheet' type='text/css' media='screen' href='./awesome/css/brands.min.css'/>
+    <script src='jquery-3.6.0.min.js'></script>
+    <script src='main.js'></script>
+    <style>
+        a {
+            text-decoration: none;
+            color: black;
+        }
+    </style>
+    
+</head>
+<body >
+    <div style="width: 95%">
+        <script defer src="https://www.livecoinwatch.com/static/lcw-widget.js"></script> <div class="livecoinwatch-widget-5" lcw-base="EUR" lcw-color-tx="#999999" lcw-marquee-1="coins" lcw-marquee-2="movers" lcw-marquee-items="10" ></div>
+    </div>
+
+    <div id="header" style="margin-left: auto; margin-right: auto;width: 80%">
+        <img src="goxxcapital.png" alt="GOXX CAPITAL" width="100px" style="float: left"/>
+        <div style="font-size: 64px; "> &#8212; Crypto Investment and Holding Ltd. &#8212; </div>
+        <div id="social" style="text-align: left;float: left;margin-left:1em;margin-top:1em;">
+            <br />
+            <a href="https://www.twitch.tv/mr_goxx/" target="_blank">
+                <i class="fab fa-twitch"></i>
+            </a>
+            <br />
+            <a href="https://www.reddit.com/r/mrgoxx" target="_blank">
+                <i class="fab fa-reddit-alien"></i>
+            </a>
+            <br />
+            <a href="https://www.youtube.com/channel/UCgsCoyhbYhPo22fCnJslgrw" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <br />
+            <a href="https://www.instagram.com/mr_goxx/" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <br />
+            <a href="https://twitter.com/mrgoxx" target="_blank">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <br />
+        </div>
+    </div>
+    
+    
+    <div style="margin-left: auto; margin-right: auto; width: 60%; display: block;margin-top: 2em;font-family: sans;">
+        <p>
+
+            <h4>DISCLAIMER</h4>
+            This content is for entertainment purposes only. Investments shown here are not financial advice.
+        </p>
+        <p>
+            <h4>Mr. Goxx's algorithm</h4>
+
+            - Every hour, randomly choose a time when to turn the intention wheel<br />
+            - On time, turn the wheel<br />
+            - Randomly choose to buy or sell<br />
+            - Place the order<br />
+            - Wait for the next hour<br />
+            - Repeat<br />
+        </p>
+
+
+    </div>
+
+    <div id="currencies" style="margin-left: auto; margin-right: auto;width: 60%;font-family: monospace">
+        <h1>Goxx Capital Trading Bot</h1>
+        <h4>Intention wheel</h4>
+        <table id="symbols" style="border: 2px solid black;width:100%" ></table>
+
+        <h4>Decision tunnels</h4>
+        <span id="buy" style="display:block;padding: 3px;text-align: right;width: 30%; border: 2px solid black;float: left;">BUY</span>
+        <span id="sell" style="display:block;padding: 3px;width: 30%; border: 2px solid black;float:right;">SELL</span>
+    </div>
+
+    <!-- <div id="closed" style="text-align:center;width: 80%; margin-left: auto; margin-right: auto;font-family: monospace;clear: both;">
+        <pre style="font-family: monospace;clear: both;display: inline-block;text-align: left;">
+      _           _
+    (`-`;-"```"-;`-`)
+     \.'         './
+     /             \
+     ;   -     -   ;
+    /| =         = |\
+   ; \   '._Y_.'   / ;
+  ;   `-._ \|/ _.-'   ;
+ ;        `"""`        ;
+ ;    `""-.   .-""`    ;
+ /;  '--._ \ / _.--   ;\
+:  `.   `/|| ||\`   .'  :
+ '.  '-._       _.-'   .'
+ (((-'`  `"""""`   `'-)))
+        </pre>
+    </div>
+    <div  id="open" style="visibility: hidden;text-align:center;width: 80%; margin-left: auto; margin-right: auto;font-family: monospace;">
+        <pre style="font-family: monospace;clear: both;display: inline-block;text-align: left;">
+      _           _
+    (`-`;-"```"-;`-`)
+     \.'         './
+     /             \
+     ;   0     0   ;
+    /| =         = |\
+   ; \   '._Y_.'   / ;
+  ;   `-._ \|/ _.-'   ;
+ ;        `"""`        ;
+ ;    `""-.   .-""`    ;
+ /;  '--._ \ / _.--   ;\
+:  `.   `/|| ||\`   .'  :
+ '.  '-._       _.-'   .'
+ (((-'`  `"""""`   `'-)))
+        </pre>
+    </div> -->
+
+    <div style="margin-top: 100px; margin-left: auto; margin-right: auto;width: 80%; font-family: monospace;margin-bottom: 50px;">
+
+        <div id="message" style="text-align: center">Setting up the trading bot...</div>
+
+        <div id="book" style="margin-left: 0; margin-right: auto;width: 70%; font-family: monospace; float: left">
+            <h4>Order book</h4>
+            <table id="orders" style="border: 2px solid black;width:98%" >
+                <tbody>
+                    <tr style="background-color: lightgrey;">
+                        <td>DATE</td>
+                        <td>SIDE</td>
+                        <td>CURRENCY</td>
+                        <td>#TOKENS</td>
+                        <td>PRICE</td>
+                        <td>VALUE</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div id="wallet" style="margin-left: auto; margin-right: 0;width: 30%; font-family: monospace;">
+            <h4>Wallet</h4>
+            <table id="wallet" style="border: 2px solid black;width:98%" >
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="footer">
+        <small>Note: This simulation uses Binance API to get market prices</small>
+    </div>
+    
+    
+    <script>
+        main();
+    </script>
+</body>
+</html>
